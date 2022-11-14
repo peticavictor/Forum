@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [Controller::class, 'index'])->name('index'); //->middleware('auth')
-Route::get('/{id}', [Controller::class, 'secondIndex'])->name('secondIndex'); //->middleware('auth')
+// Route::get('/{id}', [Controller::class, 'secondIndex'])->name('secondIndex'); //->middleware('auth')
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/createQuestion', [QuestionController::class, 'createQuestion']);
 Route::post('/question', [QuestionController::class, 'store']);

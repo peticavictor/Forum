@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container d-flex flex-row justify-content-between">
+<h1 class="text-light">index</h1>
+{{-- <div class="container d-flex flex-row justify-content-between">
     <div class="container col-md-3 ">
         <div class="card bg-dark border-light text-light opacity-75">
             <div class="card-header border-light d-flex justify-content-between">
@@ -13,7 +14,6 @@
                     <a href="/{{$question -> id}}" class="text-light btn  table table-hover" style=":hover{color:black;}">
                         <h6>{{$question -> created_at}}</h6>
                         <h6>{{$question -> title}}</h6>
-                        {{-- <a class="text-light outline-none" href="">{{$question -> title}}</a> --}}
                         <h6>by {{$question -> name}}</h6>
                     </a>
                     <hr>
@@ -34,7 +34,6 @@
                         <div class="text-light">
                             <h6>{{$answer -> created_at}}</h6>
                             <h6>{{$answer -> answer}}</h6>
-                            {{-- <a class="text-light outline-none" href="">{{$question -> title}}</a> --}}
                             <h6>by {{$answer -> name}}</h6>
                         </div>
                         <hr>
@@ -43,5 +42,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
