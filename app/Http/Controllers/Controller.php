@@ -15,23 +15,23 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    // public function index() {
-    //     $questions = DB::table('question')
-    //         ->join('users', 'users.id', '=', 'question.user_id')
-    //         ->select('question.*', 'users.*')
-    //         ->get();
+    public function index() {
+        $questions = DB::table('question')
+            ->join('users', 'users.id', '=', 'question.user_id')
+            ->select('question.*', 'users.*')
+            ->get();
             
-    //     $answers = DB::table('answer')
-    //         ->join('question', 'question.id', '=', 'answer.question_id')
-    //         ->join('users', 'users.id', '=', 'answer.user_id')
-    //         ->select('answer.*', 'users.*', 'question.*')
-    //         // ->where('answer.question_id', '=', 30)
-    //         ->get();
+        $answers = DB::table('answer')
+            ->join('question', 'question.id', '=', 'answer.question_id')
+            ->join('users', 'users.id', '=', 'answer.user_id')
+            ->select('answer.*', 'users.*', 'question.*')
+            // ->where('answer.question_id', '=', 30)
+            ->get();
 
-    //     return view('index', ['questions' => $questions, 'answers' => $answers]);
-    // }
+        return view('index', ['questions' => $questions, 'answers' => $answers]);
+    }
 
-    public function index( $questionId) {
+    public function secondIndex( $questionId) {
         $questions = DB::table('question')
             ->join('users', 'users.id', '=', 'question.user_id')
             ->select('question.*', 'users.*')
