@@ -45,7 +45,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-dark shadow">
             <div class="container">
-                <a class="navbar-brand text-light opacity-75" href="{{ url('/1') }}">LaRum</a>
+                <a class="navbar-brand text-light opacity-75" href="{{ url('/') }}">LaRum</a>
                 {{-- <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button> --}}

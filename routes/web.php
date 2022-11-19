@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [Controller::class, 'index'])->name('index'); //->middleware('auth')
-// Route::get('/{id}', [Controller::class, 'secondIndex'])->name('secondIndex'); //->middleware('auth')
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/createAnswer', [AnswerController::class, 'createAnswer']);
 Route::get('/createQuestion', [QuestionController::class, 'createQuestion']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [Controller::class, 'index'])->name('index') -> middleware('auth');
+Route::get('/{id}', [Controller::class, 'secondIndex'])->name('secondIndex') -> middleware('auth');
 Route::post('/question', [QuestionController::class, 'store']);
+Route::post('/answer', [AnswerController::class, 'store']);
