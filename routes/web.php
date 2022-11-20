@@ -32,5 +32,6 @@ Route::get('/createQuestion', [QuestionController::class, 'createQuestion']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [Controller::class, 'index'])->name('index') -> middleware('auth');
 Route::get('/{id}', [Controller::class, 'secondIndex'])->name('secondIndex') -> middleware('auth');
-Route::post('/question', [QuestionController::class, 'store']);
-Route::post('/answer', [AnswerController::class, 'store']);
+Route::post('/question', [QuestionController::class, 'store'])-> middleware('auth');
+Route::post('/answer', [AnswerController::class, 'store'])-> middleware('auth');
+Route::post('/updateAnswer', [AnswerController::class, 'update'])-> middleware('auth');

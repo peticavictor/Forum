@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Ramsey\Uuid\Type\Integer;
 
@@ -34,6 +35,8 @@ class Controller extends BaseController
     }
 
     public function secondIndex( $questionId) {
+        $loggedUser = Auth::user();
+
         $questions = DB::table('question')
             ->join('users', 'users.id', '=', 'question.user_id')
             ->select('question.*', 'users.name')
@@ -43,7 +46,7 @@ class Controller extends BaseController
         $answers = DB::table('answer')
             ->join('question', 'question.id', '=', 'answer.question_id')
             ->join('users', 'users.id', '=', 'answer.user_id')
-            ->select('answer.*', 'users.name', 'question.*')
+            ->select('answer.id as answer_id', 'answer.*', 'users.name')
             ->where('answer.question_id', '=', $questionId)
             ->get();
 
@@ -53,6 +56,6 @@ class Controller extends BaseController
             ->where('question.id', '=', $questionId)
             // ->limit(1)
             ->get();
-        return view('index', ['questions' => $questions, 'answers' => $answers, 'uniqueQuestion' => $uniqueQuestion]);
+        return view('index', ['questions' => $questions, 'answers' => $answers, 'uniqueQuestion' => $uniqueQuestion, 'loggedUser' => $loggedUser]);
     }
 }

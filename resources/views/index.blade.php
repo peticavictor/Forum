@@ -26,7 +26,6 @@
             <div class="card bg-dark border-light text-light opacity-75">
                 <div class="card-header border-light d-flex justify-content-between">
                     <div>Answers</div>
-                    <a href="/createAnswer" class="text-light opacity-100">New</a>
                 </div>
                 <div class="card-body d-flex flex-column overflow-scroll  " style="height: 80vh; ">
                     @if (!is_null($uniqueQuestion))
@@ -37,7 +36,7 @@
                                 <h6>Description: {{$q -> description}}</h6>
                                 <form action="/answer" method="POST" class="contaier d-flex flex-row">
                                     @csrf
-                                    <input type="text" name="user_id" required hidden value="{{$q -> user_id}}">
+                                    <input type="text" name="user_id" required hidden value="{{$loggedUser -> id}}">
                                     <input type="text" name="question_id" required hidden value="{{$q -> id}}">
                                     <input type="text" name="best_answer" required hidden value="{{0}}">
                                     <input type="text" placeholder="Answer" class="form-control my-2 me-2" name="answer" required max="190">
@@ -52,9 +51,20 @@
                         @if (!$answers->isEmpty())
                             @foreach ($answers as $answer)
                                 <div class="text-light">
+                                    <h6>{{$answer -> id}}</h6>
                                     <h6>{{$answer -> created_at}}</h6>
                                     <h6>{{$answer -> answer}}</h6>
                                     <h6>by {{$answer -> name}}</h6>
+                                    @if ($answer -> best_answer)
+                                        <span class="btn btn-success btn-sm">Best Answer</span>
+                                    @else
+                                        <form action="/updateAnswer" method="POST" class="contaier d-flex flex-row">
+                                            @csrf
+                                            <input type="text" name="answer_id" required hidden value="{{$answer -> id}}">
+                                            <input type="text" name="question_id" required hidden value="{{$q -> id}}">
+                                            <button class="btn btn-outline-success btn-sm my-2" type="submit">Mark as best Answer</button>
+                                        </form>
+                                    @endif
                                 </div>
                                 <hr>
                             @endforeach
